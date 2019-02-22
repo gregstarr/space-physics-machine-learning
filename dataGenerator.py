@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import xarray as xr
+import time as tt
 
 def make_generator(mag_files, ss_file, stats_file, data_interval, prediction_interval):
     """My data generator feeding function
@@ -43,7 +44,7 @@ def make_generator(mag_files, ss_file, stats_file, data_interval, prediction_int
     ss.index = pd.to_datetime(ss.Date_UTC)
     ss = ss.drop(columns=['Date_UTC'])
     
-    data_dt = np.timedelta64(data_interval, 'm')
+    data_dt = np.timedelta64(data_interval-1, 'm')
     predict_dt = np.timedelta64(prediction_interval, 'm')        
     
     def gen():
@@ -70,33 +71,26 @@ def make_generator(mag_files, ss_file, stats_file, data_interval, prediction_int
             
             while True:
                 
+                t = tt.time()
                 if time_idx + data_dt > mag_data.Date_UTC[-1].values:
                     break
+                print("break if at end", tt.time() - t)
                 
                 # select time slice
+                t = tt.time()
                 chunk = mag_data.sel(Date_UTC=slice(time_idx, time_idx + data_dt))
+                print("extract chunk", tt.time() - t)
                 
+                t = tt.time()
                 # skip if there is missing data
-                if chunk.Date_UTC.shape[0] != data_interval + 1:
+                if chunk.Date_UTC.shape[0] != data_interval:
                     time_idx += data_dt
                     continue
-                    
-                # filter out stations with NaNs
-                cond = np.isnan(chunk).any(dim=['Date_UTC', 'vals'])
-                drop = [st for st in cond if cond[st]]
-                chunk = chunk.drop(drop)
-                
-                # mag data
-                mag_chunk = chunk.sel(vals=['N','E','Z']).to_array()
-                
-                # MLT / MLAT data
-                mlat = chunk.sel(vals='MLAT').to_array()[:,0]
-                sinmlt = chunk.sel(vals='SINMLT').to_array()[:,data_interval//2]
-                cosmlt = chunk.sel(vals='COSMLT').to_array()[:,data_interval//2]
-                st_loc = np.stack((sinmlt, cosmlt, mlat), axis=1)
+                print("skip if there is missing data", tt.time() - t)
                 
                 # planet scale parameters
                 
+                t = tt.time()
                 # increment time index
                 time_idx += data_dt
                 # create target
@@ -110,12 +104,32 @@ def make_generator(mag_files, ss_file, stats_file, data_interval, prediction_int
                     location = (np.sin(first['MLT'] * 2 * np.pi / 24), 
                                 np.cos(first['MLT'] * 2 * np.pi / 24), 
                                 first['MLAT']/90)
+                print("make target", tt.time() - t)
                     
-                yield mag_chunk, st_loc, [ss_occurred], [time], location
+                yield chunk, [ss_occurred], [time], location
                 
             del mag_data
                 
     return gen
+
+# this actually needs to be passed tensors, this means I will have to pass it chunk.to_array and make sure I know 
+def parallel_data_prep(chunk, occ, t, loc):
+    print(chunk)
+    # filter out stations with NaNs
+    cond = np.isnan(chunk).any(dim=['Date_UTC', 'vals'])
+    drop = [st for st in cond if cond[st]]
+    chunk = chunk.drop(drop)
+
+    # mag data
+    mag_chunk = chunk.sel(vals=['N','E','Z']).to_array()
+
+    # MLT / MLAT data
+    mlat = chunk.sel(vals='MLAT').to_array()[:,0]
+    sinmlt = chunk.sel(vals='SINMLT').to_array()[:,data_interval//2]
+    cosmlt = chunk.sel(vals='COSMLT').to_array()[:,data_interval//2]
+    st_loc = np.stack((sinmlt, cosmlt, mlat), axis=1)
+    
+    return mag_chunk, st_loc, occ, t, loc
 
 
 def small_dset_gen(mag_file, ss_file, stats_file, data_interval, prediction_interval):
@@ -128,10 +142,10 @@ def small_dset_gen(mag_file, ss_file, stats_file, data_interval, prediction_inte
     ss.index = pd.to_datetime(ss.Date_UTC)
     ss = ss.drop(columns=['Date_UTC'])
     
-    data_dt = np.timedelta64(data_interval, 'm')
+    data_dt = np.timedelta64(data_interval-1, 'm')
     predict_dt = np.timedelta64(prediction_interval, 'm')
     
-    dataset = xr.open_dataset(mag_file).sel(dim_1=['MLT','MLAT','N','E','Z']).sel(Date_UTC=slice("2000-01-01","2000-02-01"))
+    dataset = xr.open_dataset(mag_file).sel(dim_1=['MLT','MLAT','N','E','Z']).sel(Date_UTC=slice("2004-01-01","2004-01-03"))
     
     da = dataset.to_array().values
     sinmlt = np.sin(da[:,:,0])
@@ -157,7 +171,7 @@ def small_dset_gen(mag_file, ss_file, stats_file, data_interval, prediction_inte
             chunk = mag_data.sel(Date_UTC=slice(time_idx, time_idx + data_dt))
 
             # skip if there is missing data
-            if chunk.Date_UTC.shape[0] != data_interval + 1:
+            if chunk.Date_UTC.shape[0] != data_interval:
                 time_idx += data_dt
                 continue
 
@@ -193,4 +207,22 @@ def small_dset_gen(mag_file, ss_file, stats_file, data_interval, prediction_inte
 
             yield mag_chunk, st_loc, [ss_occurred], [time], location
                 
+    return gen
+
+
+def toy_set_gen(N, C):
+    
+    """ ? x N x C input and the target is sum(input[:,0,:])
+    """
+    inputs = []
+    for i in range(10):
+        n_inputs = np.random.randint(5, 10)
+        random_input = np.random.randn(n_inputs, N, C)
+        target = np.sum(random_input[:,0,:])
+        inputs.append((random_input, target))
+    
+    def gen():
+        for ri, t in inputs:
+            yield ri, [t]
+            
     return gen

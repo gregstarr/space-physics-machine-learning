@@ -47,7 +47,7 @@ DATA_PARAMS = {"?user"      : "gregstarr",
                "service"    : "mag",
                "stations"   : None,
                "delta"      : "none",
-               "baseline"   : "none",
+               "baseline"   : "all",
                "options"    : "mlt sza decl",
                "fmt"        : "csv"}
 
