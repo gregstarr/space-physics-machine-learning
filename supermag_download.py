@@ -22,42 +22,43 @@ from io import StringIO
 import time
 import os
 
-#%% CONSTANTS
+# CONSTANTS
 
 # download directory
-DOWNLOAD_DIR = "data"
-NINTERVALS = 10
-START_YEAR = 2001
-END_YEAR = 2018
+DOWNLOAD_DIR = "data_baseline_removed"
+N_INTERVALS = 10
+START_YEAR = 2015
+END_YEAR = 2019
 
 MAX_TRIES = 5
 SLEEP_TIME = 5
-DATEFORMAT = "%Y-%m-%dT%H:%M:%S.000Z"
+DATE_FORMAT = "%Y-%m-%dT%H:%M:%S.000Z"
 
 # request string constants
 GET_STATION_LIST = "http://supermag.jhuapl.edu/mag/lib/services/inventory.php"
-STATION_PARAMS = {"service"     : "inventory",
-                  "start"       : None,
-                  "interval"    : None}
+STATION_PARAMS = {"service": "inventory",
+                  "start": None,
+                  "interval": None}
 
 GET_DATA = "http://supermag.jhuapl.edu/mag/lib/services/"
-DATA_PARAMS = {"?user"      : "gregstarr",
-               "start"      : None,
-               "interval"   : None,
-               "service"    : "mag",
-               "stations"   : None,
-               "delta"      : "none",
-               "baseline"   : "all",
-               "options"    : "mlt sza decl",
-               "fmt"        : "csv"}
+DATA_PARAMS = {"?user": "gregstarr",
+               "start": None,
+               "interval": None,
+               "service": "mag",
+               "stations": None,
+               "delta": "none",
+               "baseline": "all",
+               "options": "mlt sza decl",
+               "fmt": "csv"}
+
 
 def date_range(start, end, intv):
-    diff = (end  - start ) / intv
+    diff = (end - start) / intv
     for i in range(intv):
         yield start + diff * i
     yield end
-    
-    
+
+
 def getDataForStation(data_params):
     tries = 0
     while tries < MAX_TRIES:
@@ -76,26 +77,34 @@ def getDataForStation(data_params):
     df.index = times
     return df.drop(columns=['Date_UTC', 'IAGA'])
 
+
 def getAvailableStations(station_params):
     tries = 0
     while tries < MAX_TRIES:
         try:
             station_rq = requests.get(GET_STATION_LIST, station_params, timeout=10)
             break
-        except:
+        except Exception as e:
             tries += 1
             time.sleep(SLEEP_TIME)
     if tries == MAX_TRIES:
         print("couldn't get stations for {}".format(station_params['start']))
+        print(e)
         return
-    station_list = station_rq.json()['stations']
+    try:
+        station_list = station_rq.json()['stations']
+    except Exception as e:
+        print("couldn't get stations for {}".format(station_params['start']))
+        print(e)
+        return
     return station_list
-    
+
+
 def getDataForInterval(start_date, hours, minutes):
     data = xr.Dataset()
     
     station_params = STATION_PARAMS.copy()
-    station_params['start'] = start_date.strftime(DATEFORMAT)
+    station_params['start'] = start_date.strftime(DATE_FORMAT)
     station_params['interval'] = "{}:{}".format(hours, minutes)
     
     # get stations for interval
@@ -105,7 +114,7 @@ def getDataForInterval(start_date, hours, minutes):
     
     for station in station_list:
         data_params = DATA_PARAMS.copy()
-        data_params['start'] = start_date.strftime(DATEFORMAT)
+        data_params['start'] = start_date.strftime(DATE_FORMAT)
         data_params['interval'] = "{}:{}".format(hours, minutes)
         data_params['stations'] = station
         
@@ -116,6 +125,7 @@ def getDataForInterval(start_date, hours, minutes):
         data[station] = df
     
     return data
+
 
 def downloadDataToFile(fn, start_date, end_date, nintervals):
     dataset = xr.Dataset()
@@ -132,13 +142,15 @@ def downloadDataToFile(fn, start_date, end_date, nintervals):
     print("saving {}".format(fn))
     dataset.to_netcdf(fn)
 
+
 def downloadData():
     os.chdir(DOWNLOAD_DIR)
     for yr in range(START_YEAR, END_YEAR):
         start_date = datetime(yr, 1, 1, 0, 0, 0)
         end_date = datetime(yr+1, 1, 1, 0, 0, 0)
         fn = "mag_data_{}".format(yr)
-        downloadDataToFile(fn, start_date, end_date, NINTERVALS)
-        
+        downloadDataToFile(fn, start_date, end_date, N_INTERVALS)
+
+
 if __name__ == "__main__":
     downloadData()
