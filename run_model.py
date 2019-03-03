@@ -6,7 +6,7 @@ plt.style.use('ggplot')
 params = {
     'mag_files': glob.glob("./data/mag_data_*.nc"),
     'ss_file': "./data/substorms_2000_2018.csv",
-    'data_interval': 192,
+    'data_interval': 176,
     'prediction_interval': 120,
     'val_size': 512,
     'batch_size': 32,

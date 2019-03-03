@@ -266,13 +266,11 @@ class ResMagNN(MagNN):
         R7 = modules.residual_layer(P2, 128)
         R8 = modules.residual_layer(R7, 128)
         R9 = modules.residual_layer(R8, 128)
-        R10 = modules.residual_layer(R9, 128)
-        P3 = tf.nn.max_pool(R10, ksize=[1, 1, 2, 1], strides=[1, 1, 2, 1], padding="SAME")
-        R11 = modules.residual_layer(P3, 256)
+        P3 = tf.nn.max_pool(R9, ksize=[1, 1, 2, 1], strides=[1, 1, 2, 1], padding="SAME")
+        R10 = modules.residual_layer(P3, 256)
+        R11 = modules.residual_layer(R10, 256)
         R12 = modules.residual_layer(R11, 256)
-        R13 = modules.residual_layer(R12, 256)
-        R14 = modules.residual_layer(R13, 256)
-        P4 = tf.nn.max_pool(R14, ksize=[1, 1, 2, 1], strides=[1, 1, 2, 1], padding="SAME")
+        P4 = tf.nn.max_pool(R12, ksize=[1, 1, 2, 1], strides=[1, 1, 2, 1], padding="SAME")
 
         # FC layers
         sh = tf.shape(P4)
