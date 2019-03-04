@@ -1,0 +1,2 @@
+model_checkpoint_path: "Wider_Net.ckpt"
+all_model_checkpoint_paths: "Wider_Net.ckpt"

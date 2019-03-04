@@ -5,9 +5,9 @@ import xarray as xr
 import matplotlib.pyplot as plt
 
 plt.style.use('ggplot')
-before = 100
+before = 200
 after = 10
-n_ss = 3000
+n_ss = 1000
 substorms = pd.read_csv("./data/substorms_2000_2018.csv")
 substorms.index = pd.to_datetime(substorms.Date_UTC)
 

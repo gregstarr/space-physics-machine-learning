@@ -68,7 +68,7 @@ class MagNN:
         name = self.params['model_name']
         print(saver.save(self.session, "./model/{}.ckpt".format(name)))
         np.savez("{}.npz".format(name), **stats)
-        with open("{}_params.json".format(name)) as f:
+        with open("{}_params.json".format(name), 'w') as f:
             f.write(json.dumps(self.params))
 
         return stats
@@ -283,6 +283,45 @@ class ResMagNN(MagNN):
         inp_sum = tf.reduce_mean(FC2, axis=1)
         FC3 = tf.nn.relu(tf.layers.dense(inp_sum, 1024))
         FC4 = tf.nn.relu(tf.layers.dense(FC3, 1024))
+        model_output = tf.layers.dense(FC4, 5)
+
+        return {'occurrence': model_output[:, 0], 'time': model_output[:, 1], 'location': model_output[:, 2:]}
+
+    def get_loss(self):
+        occurrence_loss = tf.reduce_mean(
+            tf.nn.sigmoid_cross_entropy_with_logits(labels=self.occ, logits=self.output['occurrence']))
+        time_loss = tf.abs(self.occ_t - self.output['time'])
+        location_loss = tf.reduce_mean(tf.abs(self.occ_loc - self.output['location']), axis=1)
+        loss = occurrence_loss + tf.reduce_mean(self.occ * (time_loss + location_loss))
+
+        return loss
+
+
+class ResMax(MagNN):
+
+    def model_definition(self):
+        # batch x stations x time x feature
+        C1 = tf.layers.Conv2D(32, (5, 1), strides=(1, 1), padding='same', activation=tf.nn.relu)(self.mag)
+        R1 = modules.residual_layer(C1, 64, 5)
+        R2 = modules.residual_layer(R1, 64, 5)
+        R3 = modules.residual_layer(R2, 64, 5)
+        P1 = tf.nn.max_pool(R3, ksize=[1, 1, 2, 1], strides=[1, 1, 2, 1], padding="SAME")
+        R4 = modules.residual_layer(P1, 128, 3)
+        R5 = modules.residual_layer(R4, 128, 3)
+        R6 = modules.residual_layer(R5, 128, 3)
+        P2 = tf.nn.max_pool(R6, ksize=[1, 1, 2, 1], strides=[1, 1, 2, 1], padding="SAME")
+
+        # FC layers
+        sh = tf.shape(P2)
+        vectors = tf.reshape(P2, [sh[0], sh[1], 128 * self.params['data_interval'] // 4])
+        vectors = tf.concat((vectors, self.station_loc), axis=2)
+        FC1 = tf.nn.relu(tf.layers.dense(vectors, 256))
+        FC2 = tf.nn.relu(tf.layers.dense(FC1, 256))
+
+        # sum - FC layers
+        inp_sum = tf.reduce_sum(FC2, axis=1)
+        FC3 = tf.nn.relu(tf.layers.dense(inp_sum, 256))
+        FC4 = tf.nn.relu(tf.layers.dense(FC3, 256))
         model_output = tf.layers.dense(FC4, 5)
 
         return {'occurrence': model_output[:, 0], 'time': model_output[:, 1], 'location': model_output[:, 2:]}

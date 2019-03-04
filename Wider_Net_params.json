@@ -1,0 +1,1 @@
+{"mag_files": ["./data\\mag_data_2000.nc", "./data\\mag_data_2001.nc", "./data\\mag_data_2002.nc"], "ss_file": "./data/substorms_2000_2018.csv", "data_interval": 96, "prediction_interval": 96, "val_size": 512, "batch_size": 64, "model_name": "Wider_Net"}

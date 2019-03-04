@@ -4,16 +4,16 @@ import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 
 params = {
-    'mag_files': glob.glob("./data/mag_data_*.nc"),
+    'mag_files': glob.glob("./data/mag_data_*.nc")[:3],
     'ss_file': "./data/substorms_2000_2018.csv",
-    'data_interval': 176,
-    'prediction_interval': 120,
+    'data_interval': 96,
+    'prediction_interval': 96,
     'val_size': 512,
-    'batch_size': 32,
-    'model_name': "Mag_Resnet"
+    'batch_size': 64,
+    'model_name': "Wider_Net"
 }
 
-net = mag_nn.ResMagNN(params)
+net = mag_nn.ResMax(params)
 
 TRAIN = True
 if not TRAIN:
@@ -21,7 +21,7 @@ if not TRAIN:
     stats = net.run_validation()
     print(stats)
 else:
-    TRAINING_EPOCHS = 25
+    TRAINING_EPOCHS = 3
 
     stats = net.train(TRAINING_EPOCHS)
 
