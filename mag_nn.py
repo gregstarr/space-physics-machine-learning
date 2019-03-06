@@ -11,6 +11,8 @@ class MagNN:
 
         self.params = params
 
+        self.check = []
+
         tf.reset_default_graph()
 
         self.data_iterator, self.train_init, self.val_init = self.create_data_pipeline()
@@ -42,7 +44,7 @@ class MagNN:
                  'total_pts': 0}
 
         run_variables = [train_step, self.loss, self.conf, self.occ, self.occ_t, self.occ_loc,
-                         self.output['time'], self.output['location']]
+                         self.output['time'], self.output['location']] + self.check
 
         while epoch < total_epochs:
             try:
@@ -67,8 +69,8 @@ class MagNN:
 
         name = self.params['model_name']
         print(saver.save(self.session, "./model/{}.ckpt".format(name)))
-        np.savez("{}.npz".format(name), **stats)
-        with open("{}_params.json".format(name), 'w') as f:
+        np.savez("./model/{}.npz".format(name), **stats)
+        with open("./model/{}_params.json".format(name), 'w') as f:
             f.write(json.dumps(self.params))
 
         return stats
@@ -132,7 +134,9 @@ class MagNN:
     # STATIC METHODS
     @staticmethod
     def process_train_batch_results(collect, stats, epoch):
-        _, loss, conf, occ, occ_t, occ_loc, time, location = collect
+        _, loss, conf, occ, occ_t, occ_loc, time, location, *args = collect
+        for a in args:
+            print(a.shape)
         n_pts = conf.shape[0]
         stats['total_pts'] += n_pts
         stats['train_accuracy_hist'][epoch] += np.sum(np.round(conf) == occ)
@@ -143,7 +147,7 @@ class MagNN:
 
     @staticmethod
     def process_val_batch_results(collect, stats, epoch):
-        loss, conf, occ, occ_t, occ_loc, time, location = collect
+        loss, conf, occ, occ_t, occ_loc, time, location, *args = collect
         n_pts = conf.shape[0]
         stats['total_pts'] += n_pts
         stats['val_accuracy_hist'][epoch] += np.sum(np.round(conf) == occ)
@@ -317,9 +321,13 @@ class ResMax(MagNN):
         vectors = tf.concat((vectors, self.station_loc), axis=2)
         FC1 = tf.nn.relu(tf.layers.dense(vectors, 256))
         FC2 = tf.nn.relu(tf.layers.dense(FC1, 256))
+        # batch x station x blasdafdad
 
         # sum - FC layers
-        inp_sum = tf.reduce_sum(FC2, axis=1)
+        norm = tf.reduce_sum(FC2 ** 2, axis=2)
+        idx = tf.argmax(norm, axis=1)
+        inp_sum = tf.gather_nd(FC2, tf.stack((tf.range(self.params['batch_size'], dtype=tf.int64), idx), axis=1))
+        # self.check = [FC2, norm, idx, inp_sum]
         FC3 = tf.nn.relu(tf.layers.dense(inp_sum, 256))
         FC4 = tf.nn.relu(tf.layers.dense(FC3, 256))
         model_output = tf.layers.dense(FC4, 5)

@@ -2,19 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bde3d9c9-14c2-4002-b523-0aa95c963400" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/exploration.py" beforeDir="false" afterPath="$PROJECT_DIR$/exploration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exploration2.py" beforeDir="false" afterPath="$PROJECT_DIR$/exploration2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/single_station_experiment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wider_Net.npz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wider_Net_params.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exploration.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exploration2.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/mag_nn.py" beforeDir="false" afterPath="$PROJECT_DIR$/mag_nn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/2000_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/2000_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/2000_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/2000_10.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/2000_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/2000_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/2000_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/2000_5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/2001_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/2001_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/2001_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/2001_10.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/2001_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/2001_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/2001_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/2001_5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/2002_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/2002_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Wider_Net.ckpt.data-00000-of-00001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Wider_Net.ckpt.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Wider_Net.ckpt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/checkpoint" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/model.ckpt.data-00000-of-00001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/model.ckpt.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/model.ckpt.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/run_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_model.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,69 +27,21 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data_pipeline.py">
+        <entry file="file://$PROJECT_DIR$/create_single_station_dataset.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1853">
-              <caret line="112" column="4" selection-start-line="112" selection-start-column="4" selection-end-line="112" selection-end-column="4" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mag_nn.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-905">
-              <caret line="75" column="29" selection-start-line="75" selection-start-column="29" selection-end-line="75" selection-end-column="29" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="153">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/run_model.py">
+        <entry file="file://$PROJECT_DIR$/single_station_experiment.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-148">
-              <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+            <state relative-caret-position="328">
+              <caret line="31" column="107" selection-start-line="31" selection-start-column="107" selection-end-line="31" selection-end-column="107" />
               <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/exploration.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-              <folding>
-                <element signature="e#28#46#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/exploration2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-153">
-              <caret line="21" column="6" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#0#12#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -140,17 +93,19 @@
         <option value="$PROJECT_DIR$/data_pipeline.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/exploration.ipynb" />
-        <option value="$PROJECT_DIR$/exploration2.py" />
         <option value="$PROJECT_DIR$/exploration.py" />
         <option value="$PROJECT_DIR$/modules.py" />
+        <option value="$PROJECT_DIR$/exploration2.py" />
         <option value="$PROJECT_DIR$/run_model.py" />
         <option value="$PROJECT_DIR$/mag_nn.py" />
+        <option value="$PROJECT_DIR$/create_single_station_dataset.py" />
+        <option value="$PROJECT_DIR$/single_station_experiment.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="260" />
-    <option name="y" value="20" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="498" />
+    <option name="y" value="-8" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -159,7 +114,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -171,6 +125,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -189,7 +144,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.run_model">
+  <component name="RunManager" selected="Python.single_station_experiment">
     <configuration name="data_pipeline_experiment" type="PythonConfigurationType" factoryName="Python">
       <module name="space-physics-machine-learning" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -295,6 +250,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="single_station_experiment" type="PythonConfigurationType" factoryName="Python">
+      <module name="space-physics-machine-learning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/single_station_experiment.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.run_model" />
@@ -317,10 +293,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.098524764" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15542677" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -342,47 +318,47 @@
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
       <expression>
-        <expression-string>str(y)</expression-string>
+        <expression-string>net</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>year = str(y)</expression-string>
+        <expression-string>np.mean(np.sum((storm_data[st].sel(dim_1=['MLT', 'MLAT']) - ss_info[['MLT', 'MLAT']].values) ** 2, axis=1)).values</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>ss.shape</expression-string>
+        <expression-string>np.mean(np.sum((storm_data[st].sel(dim_1=['MLT', 'MLAT']) - ss_info[['MLT', 'MLAT']].values) ** 2, axis=1))</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>len(storm_data.indexes['Date_UTC'])</expression-string>
+        <expression-string>dist = np.mean(np.sum((storm_data[st].sel(dim_1=['MLT', 'MLAT']) - ss_info[['MLT', 'MLAT']].values) ** 2, axis=1))</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>storm_data.indexes['Date_UTC'].shape</expression-string>
+        <expression-string>storm_data[st].sel(dim_1=['MLT', 'MLAT']) - ss_info[['MLT', 'MLAT']].values</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>storm_data.indexes['Date_UTC']</expression-string>
+        <expression-string>storm_data[st].sel(dim_1=['MLT', 'MLAT'])</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>storm_data.indexes._sizes['Date_UTC']</expression-string>
+        <expression-string>storm_data[st].sel(dim_1=['MLT', 'MLAT']) - ss_info[['MLT', 'MLAT']]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>storm_data.indexes._sizes</expression-string>
+        <expression-string>(storm_data[st].sel(dim_1=['MLT', 'MLAT']) - ss_info[['MLT', 'MLAT']])</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>storm_data.indexes._sizes[0]</expression-string>
+        <expression-string>np.sum((storm_data[st].sel(dim_1=['MLT', 'MLAT']) - ss_info[['MLT', 'MLAT']]) ** 2, axis=1)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -486,6 +462,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/exploration.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/data_pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1853">
@@ -496,29 +479,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/exploration.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="1" />
+    <entry file="file://$PROJECT_DIR$/exploration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/exploration2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-153">
-          <caret line="21" column="6" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
+        <state relative-caret-position="515">
+          <caret line="44" selection-start-line="44" selection-end-line="44" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/exploration.py">
+    <entry file="file://$USER_HOME$/AppData/Local/conda/conda/envs/py36/Lib/site-packages/tensorflow/python/client/session.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+        <state relative-caret-position="168">
+          <caret line="1347" selection-start-line="1347" selection-end-line="1347" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
           <folding>
-            <element signature="e#28#46#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -532,20 +522,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mag_nn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-905">
-          <caret line="75" column="29" selection-start-line="75" selection-start-column="29" selection-end-line="75" selection-end-column="29" />
+        <state relative-caret-position="-289">
+          <caret line="13" column="23" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run_model.py">
+    <entry file="file://$PROJECT_DIR$/many_mag_tracks.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-148">
-          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+        <state relative-caret-position="-233">
+          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/create_single_station_dataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/conda/conda/envs/py36/Lib/site-packages/keras/engine/network.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="802">
+          <caret line="1324" selection-start-line="1324" selection-end-line="1324" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/single_station_experiment.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="31" column="107" selection-start-line="31" selection-start-column="107" selection-end-line="31" selection-end-column="107" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
           </folding>
         </state>
       </provider>

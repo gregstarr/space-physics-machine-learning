@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 before = 200
 after = 10
-n_ss = 100
+n_ss = 200
 substorms = pd.read_csv("./data/substorms_2000_2018.csv")
 substorms.index = pd.to_datetime(substorms.Date_UTC)
 
@@ -33,7 +33,7 @@ for storm_index in idx[:n_ss]:
                           np.abs(storm_data.sel(dim_1='MLAT') - ss_info.MLAT) < th)
     if np.any(cond.to_array().shape == 0) or len(storm_data.indexes['Date_UTC']) != before+after+1:
         continue
-    cond = cond.mean(dim='Date_UTC') > .5
+    cond = cond.mean(dim='Date_UTC') > .25
     close_stations = [st for st in cond if cond[st]]
     if not close_stations:
         continue

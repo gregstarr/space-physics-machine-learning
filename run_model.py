@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 
 params = {
-    'mag_files': glob.glob("./data/mag_data_*.nc")[:3],
+    'mag_files': glob.glob("./data/mag_data_*.nc")[:2],
     'ss_file': "./data/substorms_2000_2018.csv",
     'data_interval': 96,
     'prediction_interval': 96,
