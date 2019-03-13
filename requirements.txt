@@ -1,0 +1,7 @@
+tensorflow-gpu
+matplotlib == 3.0.2
+numpy
+keras
+xarray
+pandas
+basemap

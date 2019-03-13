@@ -2,11 +2,107 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bde3d9c9-14c2-4002-b523-0aa95c963400" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/evaluate_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots/global_plots.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Untitled.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/create_single_station_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/create_single_station_dataset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/single_station_experiment.py" beforeDir="false" afterPath="$PROJECT_DIR$/single_station_experiment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/convert_ae_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_download/convert_ae_text.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_single_station_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/data processing/create_single_station_dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data generator experiment.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/data generator experiment.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data preperation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/data preperation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/data processing/data_pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_pipeline_experiment.py" beforeDir="false" afterPath="$PROJECT_DIR$/data processing/data_pipeline_experiment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deep sets experiment.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/deep sets experiment.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deep_sets_experiment.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/deep_sets_experiment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exploration.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/exploration.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mag_nn.py" beforeDir="false" afterPath="$PROJECT_DIR$/network/mag_nn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/many_mag_tracks.py" beforeDir="false" afterPath="$PROJECT_DIR$/plots/many_mag_tracks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mean_mag_track_plots.py" beforeDir="false" afterPath="$PROJECT_DIR$/plots/mean_mag_track_plots.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/closest_n_stations_model_weights.h5" beforeDir="false" afterPath="$PROJECT_DIR$/models/closest_n_stations_model_weights.h5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules.py" beforeDir="false" afterPath="$PROJECT_DIR$/network/modules.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/network_stages.py" beforeDir="false" afterPath="$PROJECT_DIR$/network/network_stages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot_graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/network/plot_graph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2000_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2000_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2000_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2000_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2000_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2000_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2000_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2000_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2001_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2001_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2001_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2001_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2001_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2001_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2001_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2001_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2002_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2002_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2002_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2002_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2002_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2002_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2002_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2002_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2003_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2003_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2003_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2003_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2003_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2003_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2003_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2003_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2004_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2004_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2004_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2004_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2004_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2004_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2004_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2004_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2005_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2005_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2005_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2005_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2005_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2005_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2005_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2005_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2006_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2006_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2006_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2006_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2006_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2006_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2006_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2006_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2007_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2007_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2007_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2007_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2007_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2007_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2007_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2007_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2008_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2008_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2008_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2008_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2008_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2008_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2008_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2008_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2009_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2009_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2009_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2009_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2009_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2009_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2009_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2009_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2010_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2010_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2010_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2010_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2010_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2010_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2010_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2010_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2011_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2011_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2011_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2011_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2011_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2011_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2011_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2011_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2012_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2012_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2012_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2012_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2012_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2012_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2012_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2012_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2013_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2013_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2013_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2013_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2013_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2013_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2013_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2013_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2014_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2014_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2014_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2014_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2014_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2014_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2014_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2014_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2015_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2015_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2015_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2015_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2015_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2015_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2015_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2015_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2016_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2016_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2016_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2016_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2016_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2016_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2016_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2016_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2017_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2017_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2017_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2017_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2017_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2017_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2017_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2017_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2018_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2018_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2018_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2018_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2018_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2018_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/2018_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/trend investigation/2018_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/network/run_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/single_station_experiment.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/single_station_experiment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/supermag_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_download/supermag_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/supermag_download.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_download/supermag_download.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/supermag_download_indices.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_download/supermag_download_indices.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toy dataset experiment.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/toy dataset experiment.ipynb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,10 +113,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/single_station_experiment.py">
+        <entry file="file://$PROJECT_DIR$/data processing/create_single_station_dataset.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="78" column="36" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="36" />
+            <state relative-caret-position="1343">
+              <caret line="83" selection-start-line="83" selection-end-line="83" />
+              <folding>
+                <element signature="e#844#862#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/experiments/single_station_experiment.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="34" column="19" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -29,12 +137,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/evaluate_model.py">
+        <entry file="file://$PROJECT_DIR$/plots/global_plots.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="37" column="110" lean-forward="true" selection-start-line="37" selection-start-column="110" selection-end-line="37" selection-end-column="110" />
+            <state relative-caret-position="272">
+              <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
               <folding>
-                <element signature="e#0#6#0" expanded="true" />
+                <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -66,6 +174,11 @@
       <find>data_interval</find>
       <find>pred</find>
       <find>y_val</find>
+      <find>AAA</find>
+      <find>argm</find>
+      <find>2018</find>
+      <find>2017</find>
+      <find>fa</find>
     </findStrings>
     <replaceStrings>
       <replace>BATCH_SIZE</replace>
@@ -97,11 +210,17 @@
         <option value="$PROJECT_DIR$/single_station_experiment.py" />
         <option value="$PROJECT_DIR$/models/closest_n_station_model_architecture.json" />
         <option value="$PROJECT_DIR$/evaluate_model.py" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/plot_graph.py" />
+        <option value="$PROJECT_DIR$/global_plots.py" />
+        <option value="$PROJECT_DIR$/data processing/create_single_station_dataset.py" />
+        <option value="$PROJECT_DIR$/plots/global_plots.py" />
+        <option value="$PROJECT_DIR$/../apexpy/setup.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="184" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="232" />
     <option name="y" value="-8" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
@@ -111,7 +230,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -122,17 +240,32 @@
             <path>
               <item name="space-physics-machine-learning" type="b2602c69:ProjectViewProjectNode" />
               <item name="space-physics-machine-learning" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="experiments" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="space-physics-machine-learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="space-physics-machine-learning" type="462c0819:PsiDirectoryNode" />
+              <item name="plots" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Greg\code\space-physics-machine-learning\experiments" />
+      <recent name="C:\Users\Greg\code\space-physics-machine-learning\plots" />
+      <recent name="C:\Users\Greg\code\space-physics-machine-learning\plots\trend investigation" />
+      <recent name="C:\Users\Greg\code\space-physics-machine-learning\network" />
+      <recent name="C:\Users\Greg\code\space-physics-machine-learning\data processing" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -146,7 +279,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.evaluate_model">
+  <component name="RunManager" selected="Python.global_plots">
     <configuration name="create_single_station_dataset" type="PythonConfigurationType" factoryName="Python">
       <module name="space-physics-machine-learning" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -159,7 +292,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/create_single_station_dataset.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Greg\code\space-physics-machine-learning\data processing\create_single_station_dataset.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -180,7 +313,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_pipeline_experiment.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Greg\code\space-physics-machine-learning\data processing\data_pipeline_experiment.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -201,7 +334,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/deep_sets_experiment.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Greg\code\space-physics-machine-learning\experiments\deep_sets_experiment.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -231,6 +364,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="global_plots" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="space-physics-machine-learning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="PROJ_LIB" value="C:\\Users\\Greg\\AppData\\Local\\conda\\conda\\envs\\py36\\Library\\share" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\Users\Greg\code\space-physics-machine-learning\plots\global_plots.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="run_model" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="space-physics-machine-learning" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -243,7 +398,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run_model.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Greg\code\space-physics-machine-learning\network\run_model.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -264,7 +419,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/single_station_experiment.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Greg\code\space-physics-machine-learning\experiments\single_station_experiment.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -280,9 +435,11 @@
       <item itemvalue="Python.evaluate_model" />
       <item itemvalue="Python.single_station_experiment" />
       <item itemvalue="Python.run_model" />
+      <item itemvalue="Python.global_plots" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.global_plots" />
         <item itemvalue="Python.run_model" />
       </list>
     </recent_temporary>
@@ -298,10 +455,18 @@
       <option name="presentableId" value="Default" />
       <updated>1550810277418</updated>
     </task>
+    <task id="LOCAL-00001" summary="good 5-station model for binary classification">
+      <created>1551946680104</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1551946680104</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15542677" />
@@ -310,13 +475,13 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3531961" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49947312" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32936078" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50052685" side_tool="true" weight="0.3997833" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -342,71 +507,68 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout-to-restore>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="good 5-station model for binary classification" />
+    <option name="LAST_COMMIT_MESSAGE" value="good 5-station model for binary classification" />
+  </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
       <expression>
-        <expression-string>confidences[y_test, 0]</expression-string>
+        <expression-string>from . import fortranapex</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>confidences[y_test, 1]</expression-string>
+        <expression-string>X_yr[0].shape, X_yr[-1].shape</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>confidences</expression-string>
+        <expression-string>bm_obj(lon, lat)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>predictions</expression-string>
+        <expression-string>lon</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>one_hot_time_test[0]</expression-string>
+        <expression-string>lat</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>y_test</expression-string>
+        <expression-string>bm_obj(lat, lon)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>np.stack((np.round(confidences[:,0]), y_test)).T</expression-string>
+        <expression-string>bm_obj(X, Y), X, Y</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>np.stack((confidences[:,0], y_test)).T</expression-string>
+        <expression-string>bm_obj(X, Y), X</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>np.stack((confidences[:,0], y_test))</expression-string>
+        <expression-string>bm_obj(X, Y)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/deep sets experiment.ipynb">
+    <entry file="file://$PROJECT_DIR$/notebooks/deep sets experiment.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
         <state>
           <selected id="2" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/network_stages.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="101" column="4" selection-start-line="101" selection-start-column="4" selection-end-line="105" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/supermag_data.py">
+    <entry file="file://$PROJECT_DIR$/data_download/supermag_data.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/checkpoint" />
@@ -424,7 +586,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/supermag_download.py">
+    <entry file="file://$PROJECT_DIR$/data_download/supermag_download.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1513">
           <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
@@ -448,7 +610,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deep_sets_experiment.py">
+    <entry file="file://$PROJECT_DIR$/experiments/deep_sets_experiment.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="42" />
@@ -472,7 +634,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/exploration.ipynb">
+    <entry file="file://$PROJECT_DIR$/notebooks/exploration.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
         <state>
           <selected id="1" />
@@ -488,7 +650,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run_model.py">
+    <entry file="file://$PROJECT_DIR$/network/run_model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
           <caret line="25" selection-start-line="25" selection-end-line="25" />
@@ -498,14 +660,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules.py">
+    <entry file="file://$PROJECT_DIR$/network/modules.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mag_nn.py">
+    <entry file="file://$PROJECT_DIR$/network/mag_nn.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-289">
           <caret line="13" column="23" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
@@ -515,7 +677,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/many_mag_tracks.py">
+    <entry file="file://$PROJECT_DIR$/plots/many_mag_tracks.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-233">
           <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
@@ -532,7 +694,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_pipeline_experiment.py">
+    <entry file="file://$PROJECT_DIR$/data processing/data_pipeline_experiment.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="16" column="15" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
@@ -563,7 +725,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_pipeline.py">
+    <entry file="file://$PROJECT_DIR$/data processing/data_pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="867">
           <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="42" />
@@ -573,41 +735,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/create_single_station_dataset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="83" selection-start-line="83" selection-end-line="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Untitled.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plot_graph.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#62#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Untitled.ipynb" />
     <entry file="file://$PROJECT_DIR$/links.txt">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/single_station_experiment.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="78" column="36" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/closest_n_station_model_architecture.json">
       <provider selected="true" editor-type-id="text-editor">
@@ -616,12 +746,145 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data/supermag_stations.csv">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="52" lean-forward="true" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="52" />
+        </state>
+      </provider>
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="172">
+          <caret line="197" column="51" lean-forward="true" selection-start-line="197" selection-start-column="51" selection-end-line="197" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="1740" selection-start-line="1740" selection-end-line="1740" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/conda/conda/envs/py36/Lib/os.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="668" selection-start-line="668" selection-end-line="668" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/conda/conda/envs/py36/Lib/site-packages/mpl_toolkits/basemap/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="545" selection-start-line="545" selection-end-line="545" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/substorms_2000_2018.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="291">
+          <caret line="27413" column="31" lean-forward="true" selection-start-line="27413" selection-start-column="31" selection-end-line="27413" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/network/plot_graph.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/network/network_stages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="515">
+          <caret line="101" column="4" selection-start-line="101" selection-start-column="4" selection-end-line="105" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/evaluate_model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="37" column="110" lean-forward="true" selection-start-line="37" selection-start-column="110" selection-end-line="37" selection-end-column="110" />
+        <state relative-caret-position="306">
+          <caret line="18" selection-start-line="18" selection-end-line="18" selection-end-column="35" />
           <folding>
-            <element signature="e#0#6#0" expanded="true" />
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data processing/create_single_station_dataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1343">
+          <caret line="83" selection-start-line="83" selection-end-line="83" />
+          <folding>
+            <element signature="e#844#862#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments/single_station_experiment.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="34" column="19" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/envs/space-physics-machine-learning/Lib/site-packages/apexpy/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/envs/space-physics-machine-learning/Lib/site-packages/apexpy/apex.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/envs/space-physics-machine-learning/Lib/site-packages/apexpy-1.0.3-py3.6-win-amd64.egg/apexpy/apex.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1360">
+          <caret line="88" selection-start-line="88" selection-end-line="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../apexpy/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="17" column="53" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
+          <folding>
+            <element signature="e#48#86#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/global_plots.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
