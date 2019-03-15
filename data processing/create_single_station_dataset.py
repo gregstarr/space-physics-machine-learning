@@ -15,7 +15,7 @@ create dataset:
 
 import numpy as np
 import pandas as pd
-import datetime
+from sklearn.neighbors import KernelDensity
 import xarray as xr
 import os
 os.chdir("C:\\Users\\Greg\\code\\space-physics-machine-learning")
@@ -23,7 +23,9 @@ os.chdir("C:\\Users\\Greg\\code\\space-physics-machine-learning")
 
 def find_closest_stations(mag_data, loc):
     # find closest N_STATIONS stations with finite data
-    distances = np.mean(np.sum((mag_data[:, :, :2] - loc[None, None, :]) ** 2, axis=2), axis=1)
+    distances = np.mean(np.sum((mag_data[:, :, :2] - loc) ** 2, axis=2), axis=1)
+    if np.all(np.isnan(distances)):
+        return
     distances[np.isnan(distances)] = np.nanmax(distances)
     sort_idx = np.argsort(distances)
     return sort_idx
@@ -35,6 +37,9 @@ N_STATIONS = 5
 
 substorms = pd.read_csv("./data/substorms_2000_2018.csv")
 substorms.index = pd.to_datetime(substorms.Date_UTC)
+
+kde = KernelDensity(bandwidth=.5)
+kde.fit(substorms[["MLT", "MLAT"]].values)
 
 X = []
 y = []
@@ -67,7 +72,9 @@ for yr in range(2000, 2019):
             continue
 
         # components = MLT - MLAT - N - E - Z
-        sort_idx = find_closest_stations(mag_data, ss_loc)
+        sort_idx = find_closest_stations(mag_data, ss_loc.values)
+        if sort_idx is None:
+            continue
         sorted_mag_data = mag_data[sort_idx[:N_STATIONS], :, 2:]
         X_yr.append(sorted_mag_data)
         y_yr.append(1)
@@ -84,10 +91,13 @@ for yr in range(2000, 2019):
         random_date_index = np.random.randint(T0 + Tfinal, dates.shape[0] - Tfinal)
         if len(ss.iloc[random_date_index: random_date_index+Tfinal]) != 0:
             continue
-        mag_data = data[:, random_date_index - T0:random_date_index, 2:]
-        random_location = np.random.rand(2) * [360, 180] - [0, 90]
+        mag_data = data[:, random_date_index - T0:random_date_index]
+        random_location = kde.sample()[0]
+        random_location[0] = np.mod(random_location[0], 24)
         sort_idx = find_closest_stations(mag_data, random_location)
-        sorted_mag_data = mag_data[sort_idx[:N_STATIONS]]
+        if sort_idx is None:
+            continue
+        sorted_mag_data = mag_data[sort_idx[:N_STATIONS], :, 2:]
         if sorted_mag_data.shape != (N_STATIONS, T0, 3):
             continue
         X_yr.append(sorted_mag_data)

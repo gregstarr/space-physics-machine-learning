@@ -6,8 +6,8 @@ plt.style.use('ggplot')
 
 model_name = "closest_n_stations_model"
 
-EPOCHS = 15
-BATCH_SIZE = 64
+EPOCHS = 25
+BATCH_SIZE = 32
 train_val_split = .2
 train_test_split = .1
 
@@ -50,7 +50,7 @@ print("X val shape:", X_val.shape)
 print("X test shape:", X_test.shape)
 print("proportion of substorms: ", np.mean(y_val))
 
-reg = keras.regularizers.l2(.015)
+reg = keras.regularizers.l2(.0005)
 
 model_input = keras.layers.Input(shape=(5, 128, 3))
 net = keras.layers.Conv2D(32, [1, 5], strides=[1, 1], padding='same', activation='relu', kernel_regularizer=reg)(model_input)
@@ -59,15 +59,13 @@ net = keras.layers.Conv2D(32, [1, 5], strides=[1, 1], padding='same', activation
 net = keras.layers.MaxPool2D([1, 2], strides=[1, 2])(net)
 net = keras.layers.Conv2D(64, [1, 5], strides=[1, 1], padding='same', activation='relu', kernel_regularizer=reg)(net)
 net = keras.layers.Conv2D(64, [1, 5], strides=[1, 1], padding='same', activation='relu', kernel_regularizer=reg)(net)
-net = keras.layers.Conv2D(64, [1, 5], strides=[1, 1], padding='same', activation='relu', kernel_regularizer=reg)(net)
 net = keras.layers.MaxPool2D([1, 2], strides=[1, 2])(net)
 net = keras.layers.Conv2D(128, [1, 5], strides=[1, 1], padding='same', activation='relu', kernel_regularizer=reg)(net)
 net = keras.layers.Conv2D(128, [1, 5], strides=[1, 1], padding='same', activation='relu', kernel_regularizer=reg)(net)
-net = keras.layers.Conv2D(128, [1, 5], strides=[1, 1], padding='same', activation='relu', kernel_regularizer=reg)(net)
 net = keras.layers.MaxPool2D([1, 2], strides=[1, 2])(net)
-net = keras.layers.Conv2D(128, [5, 1], strides=[1, 1], padding='valid', activation='relu', kernel_regularizer=reg)(net)
-net = keras.layers.Conv2D(128, [1, 5], strides=[1, 1], padding='same', activation='relu', kernel_regularizer=reg)(net)
-net = keras.layers.Conv2D(128, [1, 5], strides=[1, 1], padding='same', activation='relu', kernel_regularizer=reg)(net)
+net = keras.layers.Conv2D(256, [5, 1], strides=[1, 1], padding='valid', activation='relu', kernel_regularizer=reg)(net)
+net = keras.layers.Conv2D(256, [1, 5], strides=[1, 1], padding='same', activation='relu', kernel_regularizer=reg)(net)
+net = keras.layers.Conv2D(256, [1, 5], strides=[1, 1], padding='same', activation='relu', kernel_regularizer=reg)(net)
 net = keras.layers.Conv2D(1024, [1, 16], strides=[1, 1], padding='valid', activation='relu', kernel_regularizer=reg)(net)
 net = keras.layers.Conv2D(1024, [1, 1], strides=[1, 1], padding='valid', activation='relu', kernel_regularizer=reg)(net)
 net = keras.layers.Flatten()(net)
