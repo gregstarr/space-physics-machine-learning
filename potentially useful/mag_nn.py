@@ -1,38 +1,71 @@
+"""
+This file defines neural networks using tensorflow and the data pipeline defined in "data_pipeline.py"
+"""
+
 import tensorflow as tf
 import numpy as np
-from network import modules
-from data_pipeline import small_dset_gen, large_dset_gen
+from . import modules
+from .data_pipeline import small_dset_gen, large_dset_gen
 import json
 
 
 class MagNN:
+    """
+    This is a base class for other variable-number-of-stations networks, it contains functions that every network
+    should have such as the training loop, stats collection for the training, model saving/loading, and data input
+    pipeline. In order to define an architecture, you have to override model_definition and get_loss. model_definition
+    can use the data pipeline outputs: self.mag, self.station_loc, self.occ, self.occ_t, self.occ_loc
+    and should create the model_output dictionary {'occurrence': , 'time': , 'location': }, whereas get_loss just
+    defines what the optimizer should minimize.
+
+
+    params example:
+    {
+        'mag_files': glob.glob("./data/mag_data_*.nc")[:2],
+        'ss_file': "./data/substorms_2000_2018.csv",
+        'data_interval': 96,
+        'prediction_interval': 96,
+        'val_size': 512,
+        'batch_size': 64,
+        'model_name': "Wider_Net"
+    }
+    """
 
     def __init__(self, params):
 
         self.params = params
 
+        # extra tf.placeholders to run
         self.check = []
 
         tf.reset_default_graph()
 
+        # data pipeline iterators / initializers
         self.data_iterator, self.train_init, self.val_init = self.create_data_pipeline()
+        # data pipeline tensors
         self.mag, self.station_loc, self.occ, self.occ_t, self.occ_loc = self.data_iterator.get_next()
+        # output of the model
         self.output = self.model_definition()
+        # loss
         self.loss = self.get_loss()
+        # confidences
         self.conf = tf.nn.sigmoid(self.output['occurrence'])
-
+        # session
         self.session = tf.Session()
 
     def train(self, total_epochs, learning_rate=.001):
+        # define optimizer and training step
         opt = tf.train.AdamOptimizer(learning_rate=learning_rate)
         train_step = opt.minimize(self.loss)
-
+        # model saver
         saver = tf.train.Saver()
-
+        # initialize global variables
         self.session.run(tf.global_variables_initializer())
+        # initialize the training dataset
         self.session.run(self.train_init)
 
         epoch = 0
+        # these are all the stats to keep track of
         stats = {'train_loss_hist': np.zeros(total_epochs),
                  'train_accuracy_hist': np.zeros(total_epochs),
                  'train_time_error_hist': np.zeros(total_epochs),
@@ -42,17 +75,20 @@ class MagNN:
                  'val_time_error_hist': np.zeros(total_epochs),
                  'val_loc_error_hist': np.zeros((total_epochs, 3)),
                  'total_pts': 0}
-
+        # these are all the variables to run in session.run
         run_variables = [train_step, self.loss, self.conf, self.occ, self.occ_t, self.occ_loc,
                          self.output['time'], self.output['location']] + self.check
 
         while epoch < total_epochs:
             try:
+                # run the variables (including the training step) and collect the stats for this batch
                 collect_variables = self.session.run(run_variables)
                 stats = MagNN.process_train_batch_results(collect_variables, stats, epoch)
             except tf.errors.OutOfRangeError:
+                # if you get an out of range error, that means the epoch is over
+                # collect all of the stats together for the epoch
                 stats = MagNN.process_train_epoch_results(stats, epoch)
-                # run validation set
+                # repeat above process but for the validation set
                 self.session.run(self.val_init)
                 while True:
                     try:
@@ -63,10 +99,11 @@ class MagNN:
                         break
                 # re initialize training dataset
                 self.session.run(self.train_init)
+                # print out some results
                 print("Epoch: {}, Train loss: {}, Val loss: {}".format(epoch+1, stats['train_loss_hist'][epoch],
                                                                        stats['val_loss_hist'][epoch]))
                 epoch += 1
-
+        # save the model architecture, weights, and training stats
         name = self.params['model_name']
         print(saver.save(self.session, "./model/{}.ckpt".format(name)))
         np.savez("./model/{}.npz".format(name), **stats)
@@ -76,6 +113,9 @@ class MagNN:
         return stats
 
     def run_validation(self):
+        """
+        This just runs some data through the model and collects stats but doesn't perform any weight updates
+        """
         stats = {'loss': 0,
                  'accuracy': 0,
                  'time_error': 0,
@@ -106,22 +146,31 @@ class MagNN:
                 return stats
 
     def create_data_pipeline(self):
+        """
+        this creates the data pipeline using the generator defined in data_pipeline.py
+        """
+        # unpack the params dictionary
         mag_files = self.params['mag_files']
         ss_file = self.params['ss_file']
         val_size = self.params['val_size']
         batch_size = self.params['batch_size']
         data_interval = self.params['data_interval']
         prediction_interval = self.params['prediction_interval']
+        # create the generators
         train_gen = large_dset_gen(mag_files[:-1], ss_file, data_interval, prediction_interval)
+        # the validation generator is created from the final file in the input file list
         val_gen = small_dset_gen(mag_files[-1], ss_file, data_interval, prediction_interval, val_size)
 
+        # creates the dataset using the generator, puts the data into padded batches (to accomodate variable n stations)
         train_dataset = MagNN._create_dataset(train_gen, data_interval, batch_size)
+        # shuffles up the training data
         train_dataset.shuffle(batch_size * 4).prefetch(2)
 
         val_dataset = MagNN._create_dataset(val_gen, data_interval, batch_size)
 
         iterator = tf.data.Iterator.from_structure(train_dataset.output_types, train_dataset.output_shapes)
 
+        # these iterators need to be run in order to select which dataset the model is using
         train_init = iterator.make_initializer(train_dataset)
         val_init = iterator.make_initializer(val_dataset)
 
@@ -198,6 +247,10 @@ class MagNN:
 
     def get_loss(self):
         pass
+
+
+
+# These are just some models I tried, none of them worked well
 
 
 class SimpleMagNN(MagNN):

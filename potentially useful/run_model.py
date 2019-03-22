@@ -1,5 +1,10 @@
+"""
+This script creates the model defined in mag_nn.py using params defined here. This can either create and train a new
+model or load up a saved model and run validation.
+"""
+
 import glob
-from network import mag_nn
+from . import mag_nn
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 
