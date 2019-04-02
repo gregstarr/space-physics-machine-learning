@@ -28,34 +28,40 @@ import numpy as np
 import pandas as pd
 from sklearn.neighbors import KernelDensity
 import xarray as xr
+from pymap3d.vincenty import vdist
 import os
 os.chdir("C:\\Users\\Greg\\code\\space-physics-machine-learning")
 
 
-def find_closest_stations(mag_data, loc):
-    # calculate L2^2 distance between 'loc' and the location in mag_data
-    # TODO: use proper distance
-    # mag_data[:, :, :2] is [MLT, MLAT] for every time index. MLT changes over time, MLAT stays the same, hence the
-    # averaging over time
-    distances = np.mean(np.sum((mag_data[:, :, :2] - loc) ** 2, axis=2), axis=1)
+def find_closest_stations(mag_loc, loc):
+    # calculate distance between 'loc' and the location in mag_data
+    lat1 = mag_loc[:, 1]
+    lon1 = mag_loc[:, 0] * 360 / 24
+    lat2 = np.ones_like(lat1) * loc[1]
+    lon2 = np.ones_like(lon1) * loc[0] * 360 / 24
+    s, a12, a21 = vdist(lat1, lon1, lat2, lon2)
     # if for some reason everything is NaNs, exit
-    if np.all(np.isnan(distances)):
+    if np.all(np.isnan(s)):
         return
     # if there is a single NaN in the time series for a station, the np.mean will cause that entry in 'distances' to
     # be NaN, here I make all NaNs equal to a maximum value, therefor disqualifying the station from being used.
-    distances[np.isnan(distances)] = np.nanmax(distances)
-    sort_idx = np.argsort(distances)
+    s[np.isnan(s)] = np.nanmax(s)
+    sort_idx = np.argsort(s)
     # return the indexes of the stations, sorted by distance
     return sort_idx
 
 
 T0 = 128  # length of interval to use as input data (~2 hours)
-Tfinal = 60  # length of prediction interval
+Tfinal = 30  # length of prediction interval
 N_STATIONS = 5  # how many of the closest stations to use as input
+MAX_NAN_RATIO = .1
 
 # substorm file, make it datetime indexable
-substorms = pd.read_csv("./data/substorms_2000_2018.csv")
+substorms = pd.read_csv("data/substorms_2000_2018.csv")
 substorms.index = pd.to_datetime(substorms.Date_UTC)
+
+region_corners = [[-130, 45], [-60, 70]]
+all_stations = pd.read_csv("data/supermag_stations.csv", index_col=0, usecols=[0, 1, 2, 5])
 
 # estimate the distribution of substorm locations
 kde = KernelDensity(bandwidth=.5)
@@ -80,10 +86,17 @@ for yr in range(2000, 2019):
     mag_file = "./data/mag_data_{}.nc".format(year)
     # get rid of extra columns / put the columns in the desired order
     dataset = xr.open_dataset(mag_file).sel(dim_1=['MLT', 'MLAT', 'N', 'E', 'Z'])
+    # gather stations, restrict to the region
+    stations = all_stations.loc[[st for st in dataset]].values[:, :2]
+    stations[stations > 180] -= 360
+    region_mask = ((stations[:, 0] > region_corners[0][0]) * (stations[:, 0] < region_corners[1][0]) *
+                   (stations[:, 1] > region_corners[0][1]) * (stations[:, 1] < region_corners[1][1]))
     # grab the dates before turning it into a numpy array
     dates = dataset.Date_UTC.values
     # turn the data into a big numpy array
     data = dataset.to_array().values  # (stations x time x component)
+    # filter out all stations outside of the region
+    data = data[region_mask]
 
     # find substorms
     for i in range(ss.shape[0]):
@@ -94,22 +107,43 @@ for yr in range(2000, 2019):
         # minute within the prediction interval at which the substorm takes place
         ss_interval_index = np.random.randint(0, Tfinal)
         # index within the entire year's worth of data that the substorm takes place
-        ss_date_index = np.argmax(np.datetime64(date) == dates)
+        ss_date_index = np.argmax(date == dates)
+        # if the substorm occurs too early in the year (before 2 hours + substorm interval index), skip this substorm
+        if ss_date_index - ss_interval_index - T0 < 0:
+            print("Not enough mag data", ss.index[i], ss_date_index, ss_loc.ravel())
+            continue
         # gather up the magnetometer data for the input interval
         mag_data = data[:, ss_date_index - ss_interval_index - T0:ss_date_index - ss_interval_index]
 
-        # if the substorm occurs too early in the year (before 2 hours + substorm interval index), skip this substorm
-        if mag_data.shape[1] != T0:
-            print("Not enough mag data", ss.index[i], ss_loc.ravel())
+        # check if substorm is within region
+        region_check = data[:, ss_date_index, :2] - ss_loc[None, :]
+        region_check = region_check[np.all(np.isfinite(region_check), axis=1)]
+        if (np.all(region_check[:, 0] > 0) or np.all(region_check[:, 1] > 0) or
+                np.all(region_check[:, 0] < 0) or np.all(region_check[:, 1] < 0)):
             continue
 
-        # find the closest stations, excluding magnetometers with any NaNs during this interval
-        sort_idx = find_closest_stations(mag_data, ss_loc.values)
+        # find the closest stations
+        # exclude stations that have more than MAX_NAN_RATIO average NaNs during input interval
+        nan_mask = np.mean(np.any(np.isnan(mag_data), axis=2), axis=1) > MAX_NAN_RATIO
+        # locations of the stations from 5 minutes before up to the substorm
+        mag_locs = data[:, ss_date_index-5:ss_date_index, :2]
+        # which time index has the least NaNs? the actual substorm creates many NaNs
+        best_idx = np.argmin(np.mean(np.any(np.isnan(mag_locs), axis=2), axis=0))
+        # grab the best time index
+        mag_locs = mag_locs[:, best_idx, :]
+        # discard the stations who's input data has lots of NaNs
+        mag_locs[nan_mask] = np.nan
+        # find the closest stations
+        sort_idx = find_closest_stations(mag_locs, ss_loc.values)
         # skip this interval if anything has gone wrong
         if sort_idx is None:
             continue
         # select the magnetometer data for the closest stations (only N, E, Z components, not location)
         sorted_mag_data = mag_data[sort_idx[:N_STATIONS], :, 2:]
+        if np.any(np.isnan(sorted_mag_data)):
+            nan_ratio = np.isnan(sorted_mag_data).sum() / np.prod(sorted_mag_data.shape)
+            print(year, "{} NaN ratio".format(nan_ratio))
+            sorted_mag_data[np.isnan(sorted_mag_data)] = 0
         # add this example to this years data buffer
         X_yr.append(sorted_mag_data)
         y_yr.append(1)
@@ -117,13 +151,11 @@ for yr in range(2000, 2019):
         one_hot = np.zeros(Tfinal + 1)
         one_hot[ss_interval_index+1] = 1
         one_hot_time_yr.append(one_hot)
-        i += 1
 
     # make sure to create equal number of positive and negative examples
     n_positive_examples = len(X_yr)
     print("{} substorms from {}".format(n_positive_examples, yr))
-    i = 0
-    while i < n_positive_examples:
+    for i in range(4 * n_positive_examples):
         # choose a random data during the year
         random_date_index = np.random.randint(T0 + Tfinal, dates.shape[0] - Tfinal)
         # skip this one if there is a substorm occurring (we are looking for negative examples here)
@@ -135,8 +167,25 @@ for yr in range(2000, 2019):
         random_location = kde.sample()[0]
         # make sure that the MLT is in the interval [0, 24]
         random_location[0] = np.mod(random_location[0], 24)
+        # check if substorm is within region
+        region_check = data[:, random_date_index, :2] - random_location[None, :]
+        region_check = region_check[np.all(np.isfinite(region_check), axis=1)]
+        if np.all(region_check[:, 0] > 0) or np.all(region_check[:, 1] > 0) or np.all(region_check[:, 0] < 0) or \
+                np.all(region_check[:, 1] < 0):
+            continue
         # find the closest stations
-        sort_idx = find_closest_stations(mag_data, random_location)
+        # exclude stations that have more than MAX_NAN_RATIO average NaNs during input interval
+        nan_mask = np.mean(np.any(np.isnan(mag_data), axis=2), axis=1) > MAX_NAN_RATIO
+        # locations of the stations from 5 minutes before up to the substorm
+        mag_locs = data[:, random_date_index - 5:random_date_index, :2]
+        # which time index has the least NaNs? the actual substorm creates many NaNs
+        best_idx = np.argmin(np.mean(np.any(np.isnan(mag_locs), axis=2), axis=0))
+        # grab the best time index
+        mag_locs = mag_locs[:, best_idx, :]
+        # discard the stations who's input data has lots of NaNs
+        mag_locs[nan_mask] = np.nan
+        # find the closest stations
+        sort_idx = find_closest_stations(mag_locs, random_location)
         # skip this interval if anything has gone wrong
         if sort_idx is None:
             continue
@@ -145,6 +194,10 @@ for yr in range(2000, 2019):
         # double check that the data is of the correct shape
         if sorted_mag_data.shape != (N_STATIONS, T0, 3):
             continue
+        if np.any(np.isnan(sorted_mag_data)):
+            nan_ratio = np.isnan(sorted_mag_data).sum() / np.prod(sorted_mag_data.shape)
+            print(year, "{} NaN ratio".format(nan_ratio))
+            sorted_mag_data[np.isnan(sorted_mag_data)] = 0
         # add the negative examples to this years data buffer
         X_yr.append(sorted_mag_data)
         y_yr.append(0)
@@ -152,7 +205,6 @@ for yr in range(2000, 2019):
         one_hot = np.zeros(Tfinal + 1)
         one_hot[0] = 1
         one_hot_time_yr.append(one_hot)
-        i += 1
 
     # add this years data buffer to the overall data buffers
     X.append(np.stack(X_yr, axis=0))
